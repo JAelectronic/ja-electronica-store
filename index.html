@@ -1,0 +1,634 @@
+<!DOCTYPE html>  
+<html lang="es">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>JA Electrónica - Gaming & Anime</title>  
+    <style>  
+        * {  
+            margin: 0;  
+            padding: 0;  
+            box-sizing: border-box;  
+        }  
+
+        body {  
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  
+            background: #0a0a0f;  
+            color: #e0e0e0;  
+            line-height: 1.6;  
+        }  
+
+        /* Scroll suave */  
+        html {  
+            scroll-behavior: smooth;  
+        }  
+
+        /* ===== HEADER / NAVEGACIÓN ===== */  
+        header {  
+            background: linear-gradient(135deg, #0d0d1a, #1a0a2e);  
+            padding: 1rem 0;  
+            position: fixed;  
+            width: 100%;  
+            top: 0;  
+            z-index: 100;  
+            border-bottom: 2px solid rgba(0, 180, 255, 0.3);  
+            box-shadow: 0 0 20px rgba(100, 0, 255, 0.2);  
+        }  
+
+        nav {  
+            max-width: 1200px;  
+            margin: auto;  
+            display: flex;  
+            justify-content: space-between;  
+            align-items: center;  
+            padding: 0 2rem;  
+        }  
+
+        .logo {  
+            font-size: 1.8rem;  
+            font-weight: 800;  
+            background: linear-gradient(90deg, #00b4ff, #8b5cf6);  
+            -webkit-background-clip: text;  
+            -webkit-text-fill-color: transparent;  
+            text-shadow: 0 0 20px rgba(0, 180, 255, 0.3);  
+        }  
+
+        .logo span {  
+            color: #8b5cf6;  
+            -webkit-text-fill-color: #8b5cf6;  
+        }  
+
+        .nav-links {  
+            list-style: none;  
+            display: flex;  
+            gap: 2rem;  
+        }  
+
+        .nav-links a {  
+            color: #c0c0c0;  
+            text-decoration: none;  
+            font-weight: 500;  
+            transition: 0.3s;  
+            position: relative;  
+        }  
+
+        .nav-links a:hover {  
+            color: #00b4ff;  
+            text-shadow: 0 0 10px rgba(0, 180, 255, 0.5);  
+        }  
+
+        .nav-links a::after {  
+            content: '';  
+            position: absolute;  
+            bottom: -4px;  
+            left: 0;  
+            width: 0;  
+            height: 2px;  
+            background: linear-gradient(90deg, #00b4ff, #8b5cf6);  
+            transition: 0.3s;  
+        }  
+
+        .nav-links a:hover::after {  
+            width: 100%;  
+        }  
+
+        /* Menú hamburguesa (móvil) */  
+        .menu-toggle {  
+            display: none;  
+            flex-direction: column;  
+            cursor: pointer;  
+        }  
+
+        .menu-toggle span {  
+            width: 28px;  
+            height: 3px;  
+            background: #00b4ff;  
+            margin: 4px 0;  
+            border-radius: 2px;  
+            transition: 0.3s;  
+        }  
+
+        /* ===== HERO ===== */  
+        .hero {  
+            height: 100vh;  
+            display: flex;  
+            flex-direction: column;  
+            justify-content: center;  
+            align-items: center;  
+            text-align: center;  
+            background: linear-gradient(135deg, #0a0a1a 0%, #1a0a2e 50%, #0a1a2e 100%);  
+            position: relative;  
+            overflow: hidden;  
+        }  
+
+        .hero::before {  
+            content: '';  
+            position: absolute;  
+            top: -50%;  
+            left: -50%;  
+            width: 200%;  
+            height: 200%;  
+            background: radial-gradient(circle at center, rgba(0, 180, 255, 0.05) 0%, transparent 60%);  
+            animation: pulseGlow 8s ease-in-out infinite;  
+        }  
+
+        @keyframes pulseGlow {  
+            0%, 100% { transform: scale(1); opacity: 0.5; }  
+            50% { transform: scale(1.2); opacity: 1; }  
+        }  
+
+        .hero-content {  
+            position: relative;  
+            z-index: 1;  
+        }  
+
+        .hero h1 {  
+            font-size: 4rem;  
+            font-weight: 800;  
+            background: linear-gradient(90deg, #00b4ff, #8b5cf6, #ff00ff);  
+            -webkit-background-clip: text;  
+            -webkit-text-fill-color: transparent;  
+            margin-bottom: 1rem;  
+            animation: fadeInUp 1s ease;  
+        }  
+
+        .hero p {  
+            font-size: 1.3rem;  
+            color: #a0a0b0;  
+            margin-bottom: 2rem;  
+            animation: fadeInUp 1s ease 0.2s both;  
+        }  
+
+        .btn {  
+            display: inline-block;  
+            padding: 1rem 2.5rem;  
+            background: linear-gradient(90deg, #00b4ff, #8b5cf6);  
+            color: #fff;  
+            text-decoration: none;  
+            border-radius: 50px;  
+            font-weight: 700;  
+            font-size: 1.1rem;  
+            transition: 0.3s;  
+            border: none;  
+            cursor: pointer;  
+            animation: fadeInUp 1s ease 0.4s both;  
+        }  
+
+        .btn:hover {  
+            transform: translateY(-3px) scale(1.05);  
+            box-shadow: 0 0 40px rgba(0, 180, 255, 0.4);  
+        }  
+
+        @keyframes fadeInUp {  
+            from { opacity: 0; transform: translateY(40px); }  
+            to { opacity: 1; transform: translateY(0); }  
+        }  
+
+        /* ===== SECCIONES GENERALES ===== */  
+        section {  
+            padding: 5rem 2rem;  
+            max-width: 1200px;  
+            margin: auto;  
+        }  
+
+        .section-title {  
+            text-align: center;  
+            font-size: 2.5rem;  
+            font-weight: 700;  
+            margin-bottom: 3rem;  
+            background: linear-gradient(90deg, #00b4ff, #8b5cf6);  
+            -webkit-background-clip: text;  
+            -webkit-text-fill-color: transparent;  
+            position: relative;  
+        }  
+
+        .section-title::after {  
+            content: '';  
+            display: block;  
+            width: 80px;  
+            height: 3px;  
+            background: linear-gradient(90deg, #00b4ff, #8b5cf6);  
+            margin: 0.5rem auto;  
+            border-radius: 2px;  
+        }  
+
+        /* ===== CATÁLOGO ===== */  
+        .product-grid {  
+            display: grid;  
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));  
+            gap: 2rem;  
+        }  
+
+        .product-card {  
+            background: linear-gradient(145deg, #12121f, #1a1a2e);  
+            border-radius: 16px;  
+            padding: 1.5rem;  
+            text-align: center;  
+            border: 1px solid rgba(0, 180, 255, 0.1);  
+            transition: 0.4s;  
+            position: relative;  
+            overflow: hidden;  
+        }  
+
+        .product-card::before {  
+            content: '';  
+            position: absolute;  
+            top: 0;  
+            left: 0;  
+            right: 0;  
+            bottom: 0;  
+            border-radius: 16px;  
+            background: linear-gradient(135deg, rgba(0, 180, 255, 0.05), rgba(139, 92, 246, 0.05));  
+            opacity: 0;  
+            transition: 0.4s;  
+        }  
+
+        .product-card:hover {  
+            transform: translateY(-10px);  
+            border-color: rgba(0, 180, 255, 0.4);  
+            box-shadow: 0 20px 60px rgba(0, 180, 255, 0.15);  
+        }  
+
+        .product-card:hover::before {  
+            opacity: 1;  
+        }  
+
+        .product-icon {  
+            font-size: 4rem;  
+            margin-bottom: 1rem;  
+            position: relative;  
+            z-index: 1;  
+        }  
+
+        .product-card h3 {  
+            font-size: 1.4rem;  
+            color: #00b4ff;  
+            margin-bottom: 0.5rem;  
+            position: relative;  
+            z-index: 1;  
+        }  
+
+        .product-card p {  
+            color: #9090a0;  
+            font-size: 0.95rem;  
+            margin-bottom: 1rem;  
+            position: relative;  
+            z-index: 1;  
+        }  
+
+        .product-price {  
+            font-size: 1.3rem;  
+            font-weight: 700;  
+            color: #8b5cf6;  
+            position: relative;  
+            z-index: 1;  
+        }  
+
+        .product-tag {  
+            display: inline-block;  
+            background: rgba(0, 180, 255, 0.15);  
+            color: #00b4ff;  
+            padding: 0.2rem 0.8rem;  
+            border-radius: 20px;  
+            font-size: 0.8rem;  
+            margin-top: 0.5rem;  
+            position: relative;  
+            z-index: 1;  
+        }  
+
+        /* ===== SERVICIOS ===== */  
+        .services-grid {  
+            display: grid;  
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));  
+            gap: 2rem;  
+        }  
+
+        .service-card {  
+            background: linear-gradient(145deg, #12121f, #1a1a2e);  
+            border-radius: 16px;  
+            padding: 2rem;  
+            text-align: center;  
+            border: 1px solid rgba(139, 92, 246, 0.1);  
+            transition: 0.4s;  
+        }  
+
+        .service-card:hover {  
+            transform: translateY(-8px);  
+            border-color: rgba(139, 92, 246, 0.4);  
+            box-shadow: 0 20px 60px rgba(139, 92, 246, 0.15);  
+        }  
+
+        .service-icon {  
+            font-size: 3.5rem;  
+            margin-bottom: 1rem;  
+        }  
+
+        .service-card h3 {  
+            font-size: 1.3rem;  
+            color: #8b5cf6;  
+            margin-bottom: 0.5rem;  
+        }  
+
+        .service-card p {  
+            color: #9090a0;  
+            font-size: 0.95rem;  
+        }  
+
+        /* ===== CONTACTO ===== */  
+        .contact-container {  
+            display: grid;  
+            grid-template-columns: 1fr 1fr;  
+            gap: 3rem;  
+            align-items: start;  
+        }  
+
+        .contact-info {  
+            background: linear-gradient(145deg, #12121f, #1a1a2e);  
+            border-radius: 16px;  
+            padding: 2rem;  
+            border: 1px solid rgba(0, 180, 255, 0.1);  
+        }  
+
+        .contact-info h3 {  
+            color: #00b4ff;  
+            font-size: 1.5rem;  
+            margin-bottom: 1.5rem;  
+        }  
+
+        .contact-item {  
+            display: flex;  
+            align-items: center;  
+            gap: 1rem;  
+            margin-bottom: 1rem;  
+            color: #b0b0c0;  
+        }  
+
+        .contact-icon {  
+            font-size: 1.5rem;  
+        }  
+
+        .contact-form input,  
+        .contact-form textarea {  
+            width: 100%;  
+            padding: 1rem;  
+            margin-bottom: 1rem;  
+            background: #12121f;  
+            border: 1px solid rgba(0, 180, 255, 0.2);  
+            border-radius: 8px;  
+            color: #e0e0e0;  
+            font-size: 1rem;  
+            transition: 0.3s;  
+            font-family: inherit;  
+        }  
+
+        .contact-form input:focus,  
+        .contact-form textarea:focus {  
+            outline: none;  
+            border-color: #00b4ff;  
+            box-shadow: 0 0 20px rgba(0, 180, 255, 0.15);  
+        }  
+
+        .contact-form textarea {  
+            min-height: 120px;  
+            resize: vertical;  
+        }  
+
+        .contact-form button {  
+            width: 100%;  
+        }  
+
+        /* ===== FOOTER ===== */  
+        footer {  
+            background: linear-gradient(135deg, #0d0d1a, #1a0a2e);  
+            text-align: center;  
+            padding: 2rem;  
+            border-top: 2px solid rgba(139, 92, 246, 0.2);  
+            color: #707080;  
+        }  
+
+        footer .social-links {  
+            display: flex;  
+            justify-content: center;  
+            gap: 1.5rem;  
+            margin-bottom: 1rem;  
+        }  
+
+        footer .social-links a {  
+            color: #00b4ff;  
+            font-size: 1.5rem;  
+            text-decoration: none;  
+            transition: 0.3s;  
+        }  
+
+        footer .social-links a:hover {  
+            color: #8b5cf6;  
+            text-shadow: 0 0 15px rgba(139, 92, 246, 0.5);  
+        }  
+
+        /* ===== RESPONSIVE ===== */  
+        @media (max-width: 768px) {  
+            nav {  
+                padding: 0 1rem;  
+            }  
+
+            .nav-links {  
+                display: none;  
+                flex-direction: column;  
+                position: absolute;  
+                top: 100%;  
+                left: 0;  
+                width: 100%;  
+                background: #0d0d1a;  
+                padding: 1rem 0;  
+                border-bottom: 2px solid rgba(0, 180, 255, 0.3);  
+            }  
+
+            .nav-links.active {  
+                display: flex;  
+            }  
+
+            .nav-links li {  
+                text-align: center;  
+                padding: 0.5rem 0;  
+            }  
+
+            .menu-toggle {  
+                display: flex;  
+            }  
+
+            .hero h1 {  
+                font-size: 2.5rem;  
+            }  
+
+            .hero p {  
+                font-size: 1rem;  
+                padding: 0 1rem;  
+            }  
+
+            section {  
+                padding: 3rem 1rem;  
+            }  
+
+            .section-title {  
+                font-size: 2rem;  
+            }  
+
+            .contact-container {  
+                grid-template-columns: 1fr;  
+            }  
+        }  
+    </style>  
+</head>  
+<body>  
+
+    <!-- ===== HEADER ===== -->  
+    <header>  
+        <nav>  
+            <div class="logo">JA <span>Electrónica</span></div>  
+            <ul class="nav-links" id="navLinks">  
+                <li><a href="#inicio">Inicio</a></li>  
+                <li><a href="#catalogo">Catálogo</a></li>  
+                <li><a href="#servicios">Servicios</a></li>  
+                <li><a href="#contacto">Contacto</a></li>  
+            </ul>  
+            <div class="menu-toggle" id="menuToggle">  
+                <span></span>  
+                <span></span>  
+                <span></span>  
+            </div>  
+        </nav>  
+    </header>  
+
+    <!-- ===== HERO ===== -->  
+    <section class="hero" id="inicio">  
+        <div class="hero-content">  
+            <h1>JA Electrónica</h1>  
+            <p>🎮 Tu tienda de gaming y anime • Accesorios • Teclados • Personalización</p>  
+            <a href="#catalogo" class="btn">Explorar productos</a>  
+        </div>  
+    </section>  
+
+    <!-- ===== CATÁLOGO ===== -->  
+    <section id="catalogo">  
+        <h2 class="section-title">Catálogo</h2>  
+        <div class="product-grid">  
+
+            <div class="product-card">  
+                <div class="product-icon">⌨️</div>  
+                <h3>Teclados Mecánicos</h3>  
+                <p>Teclados gaming RGB con switches intercambiables. Personalizados con keycaps anime.</p>  
+                <span class="product-tag">Nuevo</span>  
+                <div class="product-price">Desde $45</div>  
+            </div>  
+
+            <div class="product-card">  
+                <div class="product-icon">🎮</div>  
+                <h3>Accesorios para Mandos</h3>  
+                <p>Grips, cables personalizados, stickers y carcasas temáticas de anime.</p>  
+                <div class="product-price">Desde $10</div>  
+            </div>  
+
+            <div class="product-card">  
+                <div class="product-icon">🎧</div>  
+                <h3>Audífonos Gaming</h3>  
+                <p>Audífonos con sonido envolvente 7.1 y diseños de tus personajes favoritos.</p>  
+                <span class="product-tag">Popular</span>  
+                <div class="product-price">Desde $30</div>  
+            </div>  
+
+            <div class="product-card">  
+                <div class="product-icon">🖱️</div>  
+                <h3>Mousepads XXL</h3>  
+                <p>Alfombrillas tamaño escritorio con estampados de animes y juegos.</p>  
+                <div class="product-price">Desde $15</div>  
+            </div>  
+
+            <div class="product-card">  
+                <div class="product-icon">🌸</div>  
+                <h3>Figuras Anime</h3>  
+                <p>Figuras coleccionables de Naruto, Dragon Ball, Demon Slayer y más.</p>  
+                <div class="product-price">Desde $20</div>  
+            </div>  
+
+            <div class="product-card">  
+                <div class="product-icon">💡</div>  
+                <h3>Iluminación RGB</h3>  
+                <p>Tiras LED, lámparas y barras de luz para ambientar tu set up gamer.</p>  
+                <span class="product-tag">Oferta</span>  
+                <div class="product-price">Desde $12</div>  
+            </div>  
+
+        </div>  
+    </section>  
+
+    <!-- ===== SERVICIOS ===== -->  
+    <section id="servicios">  
+        <h2 class="section-title">Servicios</h2>  
+        <div class="services-grid">  
+
+            <div class="service-card">  
+                <div class="service-icon">🔧</div>  
+                <h3>Reparación de Consolas</h3>  
+                <p>Reparamos PlayStation, Xbox, Nintendo Switch y mandos. Diagnóstico gratis.</p>  
+            </div>  
+
+            <div class="service-card">  
+                <div class="service-icon">🎨</div>  
+                <h3>Personalización</h3>  
+                <p>Pintamos y decoramos tus mandos, consolas y teclados con tu anime favorito.</p>  
+            </div>  
+
+            <div class="service-card">  
+                <div class="service-icon">💻</div>  
+                <h3>Armado de PC</h3>  
+                <p>Te ayudamos a elegir componentes y armamos tu PC gaming soñada.</p>  
+            </div>  
+
+            <div class="service-card">  
+                <div class="service-icon">📦</div>  
+                <h3>Envíos a Domicilio</h3>  
+                <p>Hacemos envíos a toda la ciudad. Compras seguras y rápidas.</p>  
+            </div>  
+
+        </div>  
+    </section>  
+
+    <!-- ===== CONTACTO ===== -->  
+    <section id="contacto">  
+        <h2 class="section-title">Contacto</h2>  
+        <div class="contact-container">  
+
+            <div class="contact-info">  
+                <h3>📍 Visítanos</h3>  
+                <div class="contact-item">  
+                    <span class="contact-icon">📍</span>  
+                    <span>Tu dirección aquí</span>  
+                </div>  
+                <div class="contact-item">  
+                    <span class="contact-icon">📞</span>  
+                    <span></span>  
+                </div>  
+                <div class="contact-item">  
+                    <span class="contact-icon">✉️</span>  
+                    <span>contacto@jabaelectronica.com</span>  
+                </div>  
+                <div class="contact-item">  
+                    <span class="contact-icon">  
+                </div>  
+                <div class="contact-item" style="margin-top: 1.5rem; flex-direction: column; align-items: flex-start;">  
+                    <span style="color: #00b4ff; font-weight: 600; margin-bottom: 0.5rem;">Síguenos:</span>  
+                    <div style="display: flex; gap: 1rem; font-size: 1.5rem;">  
+                        <span>📷</span>  
+                        <span>📘</span>  
+                        <span>🐦</span>  
+                        <span>📱</span>  
+                    </div>  
+                </div>  
+            </div>  
+
+            <form class="contact-form">  
+                <input type="text" placeholder="Tu nombre" required>  
+                <input type="email" placeholder="Tu correo" required>@jabaelectronic
+                <input type="text" placeholder="Asunto">  
+                <textarea placeholder="Escribe tu mensaje..." required></textarea>  
+                <button type="submit" class="btn">Enviar mensaje</
